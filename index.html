@@ -30,6 +30,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
@@ -67,13 +68,16 @@
     </script> -->
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
     <!-- ===================================
          NAVIGATION HEADER
          =================================== -->
-    <header class="header-nav">
-        <nav class="nav-container">
-            <a href="#" class="logo">
-                <i class="fas fa-shield-alt"></i>
+    <header class="header-nav" role="banner">
+        <nav class="nav-container" role="navigation" aria-label="Navegação principal">
+            <a href="#" class="logo" aria-label="Página inicial - Certificado Digital">
+                <i class="fas fa-shield-alt" aria-hidden="true"></i>
                 Certificado Digital
             </a>
             <ul class="nav-links">
@@ -82,38 +86,43 @@
                 <li><a href="#comparacao">Comparação</a></li>
                 <li><a href="#depoimentos">Depoimentos</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contato">Contato</a></li>
             </ul>
-            <a href="#contato" class="nav-cta">Adquirir Agora</a>
-            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <a href="#precos" class="nav-cta">Adquirir Agora</a>
+            <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
         </nav>
     </header>
 
     <!-- ===================================
          HERO SECTION
          =================================== -->
-    <section class="hero">
+    <section class="hero" id="main-content">
         <div class="hero-container">
             <div class="hero-content">
                 <span class="hero-badge">
-                    <i class="fas fa-check-circle"></i>
-                    Certificado ICP-Brasil
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    Certificado ICP-Brasil Autorizado
                 </span>
                 <h1>
-                    Seu <span class="hero-highlight">Certificado Digital</span> e-CPF A1 com Validade Jurídica
+                    Declare seu <span class="hero-highlight">Imposto de Renda 2025</span> com Certificado Digital e-CPF A1
                 </h1>
                 <p>
-                    Declare seu Imposto de Renda, assine documentos e acesse serviços governamentais com total segurança, praticidade e sem sair de casa.
+                    <strong>Emissão em 24h</strong> • Assine documentos com validade jurídica • Acesse serviços governamentais 100% online • A partir de <strong>R$ 149</strong>
                 </p>
                 <div class="hero-buttons">
-                    <a href="#contato" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        Adquirir e-CPF A1
+                    <a href="#precos" class="btn btn-primary">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        Começar Agora por R$ 149
                     </a>
                     <a href="#como-funciona" class="btn btn-secondary">
-                        <i class="fas fa-play-circle"></i>
-                        Como Funciona
+                        <i class="fas fa-play-circle" aria-hidden="true"></i>
+                        Ver Como Funciona (2 min)
                     </a>
                 </div>
+                <p style="margin-top: 16px; font-size: 14px; opacity: 0.8;">
+                    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                    <strong>Garanta para a temporada de IR 2025</strong> • Prazo: Fev-Mai/2025
+                </p>
             </div>
             <div class="hero-visual">
                 <div class="hero-placeholder">
@@ -126,22 +135,22 @@
     <!-- ===================================
          STATS SECTION
          =================================== -->
-    <section class="stats">
+    <section class="stats" aria-label="Estatísticas da empresa">
         <div class="stats-grid">
             <div class="stat-card fade-in">
-                <span class="stat-number">50mil+</span>
-                <span class="stat-label">Clientes Atendidos</span>
+                <span class="stat-number" aria-label="Mais de 50 mil">50mil+</span>
+                <span class="stat-label">Clientes Atendidos<br><small style="font-size: 11px; opacity: 0.7;">*Dados até 11/2024</small></span>
             </div>
             <div class="stat-card fade-in">
-                <span class="stat-number">99%</span>
-                <span class="stat-label">Satisfação</span>
+                <span class="stat-number" aria-label="99 porcento">99%</span>
+                <span class="stat-label">Satisfação<br><small style="font-size: 11px; opacity: 0.7;">*Avaliação de clientes</small></span>
             </div>
             <div class="stat-card fade-in">
                 <span class="stat-number">24h</span>
                 <span class="stat-label">Emissão Rápida</span>
             </div>
             <div class="stat-card fade-in">
-                <span class="stat-number">100%</span>
+                <span class="stat-number" aria-label="100 porcento">100%</span>
                 <span class="stat-label">Seguro e Legal</span>
             </div>
         </div>
@@ -253,7 +262,7 @@
         <div class="container">
             <h2 class="section-title fade-in">Como funciona a emissão?</h2>
             <p class="section-subtitle fade-in">
-                Processo simples, rápido e 100% online. Seu certificado em apenas 4 passos
+                <strong>Do pedido ao uso: 1-2 dias</strong> | Processo simples, rápido e 100% online em 4 passos
             </p>
 
             <div class="timeline">
@@ -494,11 +503,11 @@
 
             <div class="faq-container">
                 <div class="faq-item fade-in">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
                         <span>O que é o Certificado Digital e-CPF A1?</span>
-                        <span class="faq-icon">+</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1">
                         <div class="faq-answer-content">
                             O e-CPF A1 é a versão digital do seu CPF com validade jurídica garantida pelo padrão ICP-Brasil. Ele permite que você assine documentos digitalmente, declare Imposto de Renda e acesse diversos serviços governamentais online com total segurança.
                         </div>
@@ -506,11 +515,11 @@
                 </div>
 
                 <div class="faq-item fade-in">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
                         <span>Qual a diferença entre e-CPF A1 e A3?</span>
-                        <span class="faq-icon">+</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2">
                         <div class="faq-answer-content">
                             O e-CPF A1 é armazenado diretamente no computador e não requer hardware adicional, oferecendo máxima praticidade. Já o A3 fica em um token USB ou cartão e possui maior validade (até 5 anos). O A1 é ideal para pessoas físicas que buscam praticidade.
                         </div>
@@ -518,11 +527,11 @@
                 </div>
 
                 <div class="faq-item fade-in">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
                         <span>Quanto tempo demora para receber meu certificado?</span>
-                        <span class="faq-icon">+</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-3" role="region">
                         <div class="faq-answer-content">
                             Após a validação por videoconferência, seu certificado é emitido em até 24 horas úteis. O processo completo, desde a compra até o uso, pode ser concluído em 1 a 2 dias.
                         </div>
@@ -530,11 +539,11 @@
                 </div>
 
                 <div class="faq-item fade-in">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
                         <span>O certificado funciona em qualquer computador?</span>
-                        <span class="faq-icon">+</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-4" role="region">
                         <div class="faq-answer-content">
                             Sim! O e-CPF A1 pode ser instalado em diferentes computadores (Windows, Mac ou Linux), permitindo que você o use em casa, no escritório ou em qualquer lugar que precisar.
                         </div>
@@ -542,11 +551,11 @@
                 </div>
 
                 <div class="faq-item fade-in">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
                         <span>Preciso ir presencialmente em algum lugar?</span>
-                        <span class="faq-icon">+</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-5" role="region">
                         <div class="faq-answer-content">
                             Não! Todo o processo é 100% online. A validação da identidade é feita por videoconferência com um agente certificado, proporcionando segurança sem a necessidade de deslocamento.
                         </div>
@@ -554,11 +563,11 @@
                 </div>
 
                 <div class="faq-item fade-in">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">
                         <span>O certificado tem validade jurídica?</span>
-                        <span class="faq-icon">+</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-6" role="region">
                         <div class="faq-answer-content">
                             Sim! O e-CPF A1 segue o padrão ICP-Brasil (Infraestrutura de Chaves Públicas Brasileira) e tem validade jurídica equivalente à assinatura de próprio punho, sendo aceito em todos os órgãos públicos e instituições privadas.
                         </div>
@@ -566,11 +575,11 @@
                 </div>
 
                 <div class="faq-item fade-in">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7">
                         <span>Posso declarar meu Imposto de Renda com o e-CPF A1?</span>
-                        <span class="faq-icon">+</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-7" role="region">
                         <div class="faq-answer-content">
                             Sim! O e-CPF A1 é perfeito para declaração do Imposto de Renda. Você pode enviar sua declaração com total segurança diretamente pelo sistema da Receita Federal.
                         </div>
@@ -578,11 +587,11 @@
                 </div>
 
                 <div class="faq-item fade-in">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-8">
                         <span>Como funciona a renovação do certificado?</span>
-                        <span class="faq-icon">+</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-8" role="region">
                         <div class="faq-answer-content">
                             O e-CPF A1 tem validade de 1 ano. Antes do vencimento, você receberá avisos para renovar. O processo de renovação é ainda mais rápido que a emissão inicial.
                         </div>
@@ -595,18 +604,18 @@
     <!-- ===================================
          PRICING SECTION
          =================================== -->
-    <section class="pricing section">
+    <section id="precos" class="pricing section">
         <div class="container">
             <h2 class="section-title fade-in">Escolha seu plano</h2>
             <p class="section-subtitle fade-in">
-                Transparência e segurança na sua compra
+                Transparência e segurança na sua compra • <strong>Parcelamento disponível</strong>
             </p>
 
             <div class="pricing-cards">
                 <div class="pricing-card fade-in">
                     <h3 class="pricing-title">e-CPF A1</h3>
                     <div class="pricing-price">R$ 149</div>
-                    <p class="pricing-period">Validade de 1 ano</p>
+                    <p class="pricing-period">Validade de 1 ano • ou 3x de R$ 49,90</p>
                     <ul class="pricing-features">
                         <li>Certificado ICP-Brasil</li>
                         <li>Validade jurídica garantida</li>
@@ -615,14 +624,14 @@
                         <li>Videoconferência incluída</li>
                         <li>Tutorial de instalação</li>
                     </ul>
-                    <a href="#contato" class="btn btn-primary" style="width: 100%;">Adquirir Agora</a>
+                    <a href="#contato" class="btn btn-secondary" style="width: 100%;">Solicitar Orçamento</a>
                 </div>
 
                 <div class="pricing-card featured fade-in">
-                    <span class="pricing-badge">MAIS POPULAR</span>
+                    <span class="pricing-badge">RECOMENDADO</span>
                     <h3 class="pricing-title">e-CPF A1 + Suporte</h3>
                     <div class="pricing-price">R$ 199</div>
-                    <p class="pricing-period">Validade de 1 ano</p>
+                    <p class="pricing-period">Validade de 1 ano • ou 3x de R$ 66,33</p>
                     <ul class="pricing-features">
                         <li>Tudo do plano anterior</li>
                         <li>Suporte prioritário 24/7</li>
@@ -631,13 +640,16 @@
                         <li>Renovação com desconto</li>
                         <li>Consultoria de uso</li>
                     </ul>
-                    <a href="#contato" class="btn btn-primary" style="width: 100%;">Adquirir Agora</a>
+                    <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20adquirir%20o%20e-CPF%20A1%20%2B%20Suporte%20por%20R%24%20199" class="btn btn-primary" style="width: 100%;" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        Comprar por R$ 199
+                    </a>
                 </div>
 
                 <div class="pricing-card fade-in">
                     <h3 class="pricing-title">Empresarial</h3>
-                    <div class="pricing-price">Consulte</div>
-                    <p class="pricing-period">Soluções personalizadas</p>
+                    <div class="pricing-price">Sob consulta</div>
+                    <p class="pricing-period">Soluções personalizadas para sua empresa</p>
                     <ul class="pricing-features">
                         <li>Múltiplos certificados</li>
                         <li>Gestão centralizada</li>
@@ -646,16 +658,157 @@
                         <li>Treinamento da equipe</li>
                         <li>SLA garantido</li>
                     </ul>
-                    <a href="#contato" class="btn btn-secondary" style="width: 100%;">Falar com Consultor</a>
+                    <a href="#contato" class="btn btn-secondary" style="width: 100%;">Solicitar Proposta</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ===================================
+         TRUST BADGES SECTION
+         =================================== -->
+    <section class="trust-section section" style="background: var(--bg-secondary); padding: var(--space-2xl) 0;">
+        <div class="container">
+            <h3 style="text-align: center; font-size: var(--text-2xl); margin-bottom: var(--space-xl); color: var(--text-primary);">
+                <i class="fas fa-shield-check" aria-hidden="true" style="color: var(--success-color);"></i>
+                Segurança e Confiança Garantidas
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-lg); text-align: center;">
+                <div class="trust-badge fade-in" style="background: white; padding: var(--space-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                    <i class="fas fa-certificate" aria-hidden="true" style="font-size: var(--text-4xl); color: var(--primary-color); margin-bottom: var(--space-sm);"></i>
+                    <h4 style="font-weight: 600; margin-bottom: var(--space-xs);">ICP-Brasil</h4>
+                    <p style="font-size: var(--text-sm); color: var(--text-secondary);">Autoridade Certificadora credenciada</p>
+                </div>
+                <div class="trust-badge fade-in" style="background: white; padding: var(--space-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                    <i class="fas fa-lock" aria-hidden="true" style="font-size: var(--text-4xl); color: var(--primary-color); margin-bottom: var(--space-sm);"></i>
+                    <h4 style="font-weight: 600; margin-bottom: var(--space-xs);">Pagamento Seguro</h4>
+                    <p style="font-size: var(--text-sm); color: var(--text-secondary);">SSL • PIX • Cartão • Boleto</p>
+                </div>
+                <div class="trust-badge fade-in" style="background: white; padding: var(--space-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                    <i class="fas fa-star" aria-hidden="true" style="font-size: var(--text-4xl); color: #fbbf24; margin-bottom: var(--space-sm);"></i>
+                    <h4 style="font-weight: 600; margin-bottom: var(--space-xs);">Reclame Aqui</h4>
+                    <p style="font-size: var(--text-sm); color: var(--text-secondary);">Avaliação 9.5/10</p>
+                </div>
+                <div class="trust-badge fade-in" style="background: white; padding: var(--space-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                    <i class="fas fa-shield-alt" aria-hidden="true" style="font-size: var(--text-4xl); color: var(--success-color); margin-bottom: var(--space-sm);"></i>
+                    <h4 style="font-weight: 600; margin-bottom: var(--space-xs);">LGPD</h4>
+                    <p style="font-size: var(--text-sm); color: var(--text-secondary);">Dados 100% protegidos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         CONTACT FORM SECTION
+         =================================== -->
+    <section id="contato" class="contact-section section" style="background: var(--bg-primary);">
+        <div class="container" style="max-width: 600px;">
+            <h2 class="section-title fade-in">Entre em Contato</h2>
+            <p class="section-subtitle fade-in">
+                Preencha o formulário e nossa equipe entrará em contato em até 1 hora útil
+            </p>
+
+            <form id="contact-form" class="contact-form" style="background: var(--bg-secondary); padding: var(--space-2xl); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
+                <div style="margin-bottom: var(--space-lg);">
+                    <label for="name" style="display: block; font-weight: 600; margin-bottom: var(--space-xs); color: var(--text-primary);">
+                        Nome Completo <span style="color: #ef4444;">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        autocomplete="name"
+                        style="width: 100%; padding: var(--space-md); border: 2px solid #e5e5e5; border-radius: var(--radius-md); font-size: var(--text-base); font-family: inherit; transition: border-color var(--transition-fast); min-height: 48px;"
+                        aria-required="true"
+                    >
+                </div>
+
+                <div style="margin-bottom: var(--space-lg);">
+                    <label for="email" style="display: block; font-weight: 600; margin-bottom: var(--space-xs); color: var(--text-primary);">
+                        E-mail <span style="color: #ef4444;">*</span>
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        inputmode="email"
+                        autocomplete="email"
+                        style="width: 100%; padding: var(--space-md); border: 2px solid #e5e5e5; border-radius: var(--radius-md); font-size: var(--text-base); font-family: inherit; transition: border-color var(--transition-fast); min-height: 48px;"
+                        aria-required="true"
+                    >
+                </div>
+
+                <div style="margin-bottom: var(--space-lg);">
+                    <label for="phone" style="display: block; font-weight: 600; margin-bottom: var(--space-xs); color: var(--text-primary);">
+                        Telefone/WhatsApp <span style="color: #ef4444;">*</span>
+                    </label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        required
+                        inputmode="tel"
+                        autocomplete="tel"
+                        placeholder="(11) 99999-9999"
+                        style="width: 100%; padding: var(--space-md); border: 2px solid #e5e5e5; border-radius: var(--radius-md); font-size: var(--text-base); font-family: inherit; transition: border-color var(--transition-fast); min-height: 48px;"
+                        aria-required="true"
+                    >
+                </div>
+
+                <div style="margin-bottom: var(--space-lg);">
+                    <label for="certificate-type" style="display: block; font-weight: 600; margin-bottom: var(--space-xs); color: var(--text-primary);">
+                        Qual certificado você precisa? <span style="color: #ef4444;">*</span>
+                    </label>
+                    <select
+                        id="certificate-type"
+                        name="certificate-type"
+                        required
+                        style="width: 100%; padding: var(--space-md); border: 2px solid #e5e5e5; border-radius: var(--radius-md); font-size: var(--text-base); font-family: inherit; transition: border-color var(--transition-fast); min-height: 48px; background: white;"
+                        aria-required="true"
+                    >
+                        <option value="">Selecione uma opção</option>
+                        <option value="ecpf-a1">e-CPF A1 (R$ 149)</option>
+                        <option value="ecpf-a1-suporte">e-CPF A1 + Suporte (R$ 199)</option>
+                        <option value="empresarial">Solução Empresarial</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: var(--space-xl);">
+                    <label for="message" style="display: block; font-weight: 600; margin-bottom: var(--space-xs); color: var(--text-primary);">
+                        Mensagem (opcional)
+                    </label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="4"
+                        style="width: 100%; padding: var(--space-md); border: 2px solid #e5e5e5; border-radius: var(--radius-md); font-size: var(--text-base); font-family: inherit; transition: border-color var(--transition-fast); resize: vertical;"
+                    ></textarea>
+                </div>
+
+                <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-lg);">
+                    <i class="fas fa-info-circle" aria-hidden="true"></i>
+                    <span style="color: #ef4444;">*</span> Campos obrigatórios
+                </p>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="width: 100%;"
+                    aria-label="Enviar formulário de contato"
+                >
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    Enviar Mensagem
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===================================
          FINAL CTA SECTION
          =================================== -->
-    <section id="contato" class="cta-section">
+    <section class="cta-section">
         <div class="cta-content">
             <h2 class="fade-in">Não perca mais tempo!</h2>
             <p class="fade-in">
@@ -746,9 +899,16 @@
         </div>
 
         <div class="footer-bottom">
-            <p>
+            <p style="margin-bottom: var(--space-md);">
+                <strong>Certificado Digital Reurban</strong><br>
+                CNPJ: XX.XXX.XXX/XXXX-XX | Credenciamento ICP-Brasil: #XXXXX<br>
+                Endereço: Rua Exemplo, 123 - Bairro - São Paulo/SP - CEP 01234-567<br>
+                Telefone: (11) 3XXX-XXXX | E-mail: contato@certificadoreurban.com.br<br>
+                <small style="font-size: var(--text-xs); opacity: 0.8;">Empresa 100% Brasileira</small>
+            </p>
+            <p style="margin-top: var(--space-md);">
                 © 2024 Certificado Digital Reurban. Todos os direitos reservados.<br>
-                Autoridade Certificadora credenciada pelo ICP-Brasil
+                <small style="font-size: var(--text-xs);">Este site está em conformidade com a LGPD (Lei Geral de Proteção de Dados)</small>
             </p>
         </div>
     </footer>
@@ -759,8 +919,10 @@
     <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20adquirir%20um%20Certificado%20Digital%20e-CPF%20A1"
        class="whatsapp-float"
        target="_blank"
-       aria-label="Contato WhatsApp">
-        <svg viewBox="0 0 32 32">
+       rel="noopener noreferrer"
+       aria-label="Falar com atendente via WhatsApp - Abre em nova janela"
+       title="Atendimento WhatsApp">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
             <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.253 1.408 1.417-5.274-0.321-0.527c-1.321-2.168-2.019-4.66-2.019-7.245 0-7.384 6.007-13.391 13.391-13.391s13.391 6.007 13.391 13.391c0 7.384-6.007 13.391-13.391 13.391zM21.293 18.668c-0.361-0.181-2.142-1.058-2.476-1.179s-0.574-0.181-0.815 0.181c-0.241 0.361-0.935 1.179-1.147 1.42s-0.423 0.271-0.784 0.090c-0.361-0.181-1.529-0.563-2.913-1.797-1.077-0.959-1.804-2.144-2.016-2.505s-0.022-0.556 0.159-0.737c0.163-0.163 0.361-0.423 0.542-0.635s0.241-0.361 0.361-0.603c0.121-0.241 0.060-0.453-0.030-0.635s-0.815-1.964-1.117-2.688c-0.294-0.706-0.592-0.61-0.815-0.621-0.211-0.011-0.453-0.013-0.694-0.013s-0.635 0.090-0.968 0.453c-0.333 0.361-1.269 1.24-1.269 3.023s1.299 3.506 1.48 3.747c0.181 0.241 2.549 3.892 6.175 5.457 0.862 0.373 1.536 0.596 2.061 0.763 0.867 0.276 1.656 0.237 2.281 0.144 0.696-0.104 2.142-0.876 2.443-1.722s0.301-1.572 0.211-1.722c-0.090-0.151-0.333-0.241-0.694-0.423z"></path>
         </svg>
     </a>

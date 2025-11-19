@@ -60,7 +60,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===================================
-// FAQ ACCORDION
+// FAQ ACCORDION (with ARIA support)
 // ===================================
 const faqItems = document.querySelectorAll('.faq-item');
 
@@ -70,12 +70,17 @@ faqItems.forEach(item => {
     question.addEventListener('click', () => {
         const isActive = item.classList.contains('active');
 
-        // Close all FAQ items
-        faqItems.forEach(faq => faq.classList.remove('active'));
+        // Close all FAQ items and update ARIA
+        faqItems.forEach(faq => {
+            faq.classList.remove('active');
+            const btn = faq.querySelector('.faq-question');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
 
         // Open clicked item if it wasn't active
         if (!isActive) {
             item.classList.add('active');
+            question.setAttribute('aria-expanded', 'true');
         }
     });
 });
@@ -88,12 +93,15 @@ const navLinks = document.querySelector('.nav-links');
 
 if (menuToggle) {
     menuToggle.addEventListener('click', () => {
+        const isActive = navLinks.classList.contains('active');
         navLinks.classList.toggle('active');
         menuToggle.classList.toggle('active');
 
-        // Update icon
+        // Update icon and ARIA
         const icon = menuToggle.textContent;
         menuToggle.textContent = icon === '☰' ? '✕' : '☰';
+        menuToggle.setAttribute('aria-expanded', !isActive);
+        menuToggle.setAttribute('aria-label', isActive ? 'Abrir menu de navegação' : 'Fechar menu de navegação');
     });
 
     // Close menu when clicking on a link
@@ -102,6 +110,8 @@ if (menuToggle) {
             navLinks.classList.remove('active');
             menuToggle.classList.remove('active');
             menuToggle.textContent = '☰';
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Abrir menu de navegação');
         });
     });
 }
@@ -143,33 +153,151 @@ document.querySelectorAll('.stat-number').forEach(stat => {
 });
 
 // ===================================
-// FORM VALIDATION (if forms are added)
+// TOAST NOTIFICATION SYSTEM
 // ===================================
-const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+const showToast = (message, title = '', type = 'success') => {
+    // Create toast container if it doesn't exist
+    let toastContainer = document.querySelector('.toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.className = 'toast-container';
+        document.body.appendChild(toastContainer);
+    }
+
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+
+    const iconMap = {
+        success: 'fa-check-circle',
+        error: 'fa-exclamation-circle',
+        warning: 'fa-exclamation-triangle'
+    };
+
+    toast.innerHTML = `
+        <i class="fas ${iconMap[type] || iconMap.success} toast-icon" aria-hidden="true"></i>
+        <div class="toast-content">
+            ${title ? `<div class="toast-title">${title}</div>` : ''}
+            <div class="toast-message">${message}</div>
+        </div>
+    `;
+
+    toastContainer.appendChild(toast);
+
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+    }, 5000);
 };
 
-const handleFormSubmit = (form) => {
-    form.addEventListener('submit', (e) => {
+// ===================================
+// FORM VALIDATION & SUBMISSION
+// ===================================
+const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    return re.test(String(email).toLowerCase());
+};
+
+const validatePhone = (phone) => {
+    const re = /^[\d\s\(\)\-\+]{10,}$/;
+    return re.test(phone);
+};
+
+// Enhanced form handling with loading states
+const handleContactFormSubmit = () => {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const emailInput = form.querySelector('input[type="email"]');
-        if (emailInput && !validateEmail(emailInput.value)) {
-            alert('Por favor, insira um email válido.');
+        const submitButton = form.querySelector('button[type="submit"]');
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        // Validation
+        if (!validateEmail(data.email)) {
+            showToast('Por favor, insira um email válido.', 'Email Inválido', 'error');
+            form.querySelector('#email').focus();
             return;
         }
 
-        // Add your form submission logic here
-        console.log('Form submitted successfully!');
-        alert('Obrigado! Entraremos em contato em breve.');
-        form.reset();
+        if (!validatePhone(data.phone)) {
+            showToast('Por favor, insira um telefone válido.', 'Telefone Inválido', 'error');
+            form.querySelector('#phone').focus();
+            return;
+        }
+
+        // Show loading state
+        submitButton.classList.add('loading');
+        submitButton.disabled = true;
+        const originalText = submitButton.innerHTML;
+        submitButton.innerHTML = '<span class="loading-spinner"></span> Enviando...';
+
+        try {
+            // Simulate API call (replace with actual endpoint)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Success
+            showToast('Recebemos sua mensagem! Nossa equipe entrará em contato em breve.', 'Mensagem Enviada!', 'success');
+            form.reset();
+
+            // Track conversion (for analytics)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_submission', {
+                    'event_category': 'engagement',
+                    'event_label': 'contact_form'
+                });
+            }
+
+        } catch (error) {
+            showToast('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente ou entre em contato via WhatsApp.', 'Erro no Envio', 'error');
+            console.error('Form submission error:', error);
+        } finally {
+            // Remove loading state
+            submitButton.classList.remove('loading');
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+        }
     });
+
+    // Real-time validation feedback
+    const emailInput = form.querySelector('#email');
+    const phoneInput = form.querySelector('#phone');
+
+    if (emailInput) {
+        emailInput.addEventListener('blur', () => {
+            if (emailInput.value && !validateEmail(emailInput.value)) {
+                emailInput.style.borderColor = '#ef4444';
+            } else {
+                emailInput.style.borderColor = '#10b981';
+            }
+        });
+
+        emailInput.addEventListener('input', () => {
+            if (emailInput.value) {
+                emailInput.style.borderColor = validateEmail(emailInput.value) ? '#10b981' : '#ef4444';
+            } else {
+                emailInput.style.borderColor = '#e5e5e5';
+            }
+        });
+    }
+
+    if (phoneInput) {
+        phoneInput.addEventListener('blur', () => {
+            if (phoneInput.value && !validatePhone(phoneInput.value)) {
+                phoneInput.style.borderColor = '#ef4444';
+            } else if (phoneInput.value) {
+                phoneInput.style.borderColor = '#10b981';
+            }
+        });
+    }
 };
 
-// Apply form validation to all forms
-document.querySelectorAll('form').forEach(form => {
-    handleFormSubmit(form);
+// Initialize form handling
+document.addEventListener('DOMContentLoaded', () => {
+    handleContactFormSubmit();
 });
 
 // ===================================
