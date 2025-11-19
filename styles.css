@@ -497,94 +497,103 @@ button {
 }
 
 .timeline {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     position: relative;
-    padding: var(--space-md) 0;
 }
 
-/* Linha vertical conectando os passos */
+/* Linha vertical central conectando os passos */
 .timeline::before {
     content: '';
     position: absolute;
-    left: 40px;
-    top: 80px;
-    bottom: 80px;
-    width: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
     background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-hover) 100%);
     border-radius: 2px;
 }
 
-.timeline-step {
-    display: flex;
+.timeline-item {
+    display: grid;
+    grid-template-columns: 1fr 100px 1fr;
     gap: var(--space-xl);
     margin-bottom: var(--space-3xl);
     position: relative;
 }
 
-.timeline-step:last-child {
+.timeline-item:last-child {
     margin-bottom: 0;
 }
 
-/* Indicador do passo (ícone + número) */
-.step-indicator {
-    flex-shrink: 0;
+/* Número central grande */
+.timeline-number {
+    width: 100px;
+    height: 100px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: var(--space-sm);
+    justify-content: center;
+    font-size: var(--text-5xl);
+    font-weight: 800;
+    color: white;
+    box-shadow: 0 10px 30px rgba(254, 78, 0, 0.4);
     z-index: 2;
+    position: relative;
+    align-self: center;
+    transition: all var(--transition-base);
 }
 
-.step-icon {
-    width: 80px;
-    height: 80px;
-    background: var(--gradient-primary);
+.timeline-item:hover .timeline-number {
+    transform: scale(1.15) rotate(360deg);
+    box-shadow: 0 15px 40px rgba(254, 78, 0, 0.5);
+}
+
+/* Conteúdo do card */
+.timeline-content {
+    background: var(--bg-secondary);
+    padding: var(--space-2xl);
     border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.timeline-content:not(.timeline-empty) {
+    border: 2px solid transparent;
+}
+
+.timeline-item:hover .timeline-content:not(.timeline-empty) {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-2xl);
+    border-color: var(--primary-color);
+}
+
+.timeline-empty {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+/* Ícone inline no card */
+.step-icon-inline {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: var(--text-3xl);
     color: white;
-    box-shadow: 0 8px 24px rgba(254, 78, 0, 0.3);
+    margin-bottom: var(--space-md);
+    box-shadow: 0 6px 20px rgba(254, 78, 0, 0.3);
     transition: all var(--transition-base);
 }
 
-.timeline-step:hover .step-icon {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 12px 32px rgba(254, 78, 0, 0.4);
-}
-
-.step-number {
-    width: 32px;
-    height: 32px;
-    background: var(--bg-primary);
-    border: 3px solid var(--primary-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: var(--text-lg);
-    color: var(--primary-color);
-    margin-top: calc(var(--space-sm) * -1);
-}
-
-/* Conteúdo do passo */
-.step-content {
-    flex: 1;
-    background: var(--bg-secondary);
-    padding: var(--space-xl);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
-    transition: all var(--transition-base);
-    border-left: 4px solid var(--primary-color);
-}
-
-.timeline-step:hover .step-content {
-    transform: translateX(8px);
-    box-shadow: var(--shadow-xl);
-    border-left-width: 6px;
+.timeline-item:hover .step-icon-inline {
+    transform: scale(1.1) rotate(-5deg);
 }
 
 .step-header {
@@ -601,6 +610,7 @@ button {
     font-weight: 700;
     color: var(--text-primary);
     margin: 0;
+    flex: 1;
 }
 
 .step-time {
@@ -614,15 +624,16 @@ button {
     font-size: var(--text-sm);
     font-weight: 600;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .step-time i {
-    font-size: var(--text-xs);
+    font-size: 0.85em;
 }
 
 .step-description {
     color: var(--text-secondary);
-    line-height: 1.7;
+    line-height: 1.8;
     margin-bottom: var(--space-md);
     font-size: var(--text-base);
 }
@@ -639,14 +650,20 @@ button {
     gap: var(--space-xs);
     background: rgba(254, 78, 0, 0.1);
     color: var(--primary-color);
-    padding: var(--space-xs) var(--space-sm);
+    padding: var(--space-xs) var(--space-md);
     border-radius: var(--radius-md);
     font-size: var(--text-sm);
-    font-weight: 500;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+}
+
+.feature-tag:hover {
+    background: rgba(254, 78, 0, 0.2);
+    transform: translateY(-2px);
 }
 
 .feature-tag i {
-    font-size: var(--text-xs);
+    font-size: 0.85em;
 }
 
 /* ===================================
@@ -1204,6 +1221,33 @@ button {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    /* Timeline responsive - tablet */
+    .timeline::before {
+        left: 60px;
+    }
+
+    .timeline-item {
+        grid-template-columns: 80px 1fr;
+        gap: var(--space-lg);
+    }
+
+    .timeline-number {
+        width: 80px;
+        height: 80px;
+        font-size: var(--text-4xl);
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    .timeline-content:not(.timeline-empty) {
+        grid-row: 1;
+        grid-column: 2;
+    }
+
+    .timeline-empty {
+        display: none;
+    }
+
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1244,30 +1288,30 @@ button {
         grid-template-columns: 1fr;
     }
 
-    /* Timeline responsive */
+    /* Timeline mobile */
     .timeline::before {
-        left: 32px;
+        left: 40px;
     }
 
-    .timeline-step {
+    .timeline-item {
+        grid-template-columns: 70px 1fr;
         gap: var(--space-md);
     }
 
-    .step-icon {
-        width: 64px;
-        height: 64px;
+    .timeline-number {
+        width: 70px;
+        height: 70px;
+        font-size: var(--text-3xl);
+    }
+
+    .timeline-content:not(.timeline-empty) {
+        padding: var(--space-lg);
+    }
+
+    .step-icon-inline {
+        width: 56px;
+        height: 56px;
         font-size: var(--text-2xl);
-    }
-
-    .step-number {
-        width: 28px;
-        height: 28px;
-        font-size: var(--text-base);
-        border-width: 2px;
-    }
-
-    .step-content {
-        padding: var(--space-md);
     }
 
     .step-title {
@@ -1276,21 +1320,22 @@ button {
 
     .step-header {
         flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-sm);
+        gap: var(--space-xs);
     }
 
     .step-time {
         align-self: flex-start;
+        font-size: 0.8rem;
+        padding: 4px var(--space-sm);
     }
 
-    .step-features {
-        gap: var(--space-xs);
+    .step-description {
+        font-size: var(--text-sm);
     }
 
     .feature-tag {
-        font-size: var(--text-xs);
-        padding: 4px var(--space-xs);
+        font-size: 0.8rem;
+        padding: 4px var(--space-sm);
     }
 
     .comparison-header,
@@ -1356,24 +1401,28 @@ button {
 
     /* Timeline extra small screens */
     .timeline::before {
-        left: 28px;
+        left: 32px;
     }
 
-    .step-icon {
-        width: 56px;
-        height: 56px;
+    .timeline-item {
+        grid-template-columns: 60px 1fr;
+        gap: var(--space-sm);
+    }
+
+    .timeline-number {
+        width: 60px;
+        height: 60px;
+        font-size: var(--text-2xl);
+    }
+
+    .timeline-content:not(.timeline-empty) {
+        padding: var(--space-md);
+    }
+
+    .step-icon-inline {
+        width: 50px;
+        height: 50px;
         font-size: var(--text-xl);
-        border-radius: var(--radius-lg);
-    }
-
-    .step-number {
-        width: 24px;
-        height: 24px;
-        font-size: var(--text-sm);
-    }
-
-    .step-content {
-        padding: var(--space-md) var(--space-sm);
     }
 
     .step-title {
@@ -1381,7 +1430,12 @@ button {
     }
 
     .step-description {
-        font-size: var(--text-sm);
+        font-size: 0.875rem;
+    }
+
+    .feature-tag {
+        font-size: 0.75rem;
+        padding: 3px 8px;
     }
 }
 
